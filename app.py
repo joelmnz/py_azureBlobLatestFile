@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 from azure.storage.blob import BlobServiceClient
 from azure.core.exceptions import ResourceNotFoundError
 from dotenv import load_dotenv
@@ -26,7 +26,7 @@ def get_most_recent_file_datetime():
         blobs = list(container_client.list_blobs())
         if blobs:
             most_recent_blob = max(blobs, key=lambda b: b.last_modified)
-            now = datetime.utcnow()
+            now = datetime.now(timezone.utc)
             if (now - most_recent_blob.last_modified).total_seconds() > consider_old_after_hrs * 3600:
                 return f"{most_recent_blob.last_modified.strftime('%Y-%m-%d %H:%M:%S UTC')} (OLD)"
             return most_recent_blob.last_modified.strftime('%Y-%m-%d %H:%M:%S UTC')
