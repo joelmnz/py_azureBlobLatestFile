@@ -63,7 +63,7 @@ To upload the Docker image to Docker Hub:
 docker tag azure-blob-latest-file your-dockerhub-username/azure-blob-latest-file:latest
 
 # Log in to Docker Hub
-docker login
+docker login --username your-user-name
 
 # Push the Docker image to Docker Hub
 docker push your-dockerhub-username/azure-blob-latest-file:latest
