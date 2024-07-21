@@ -12,6 +12,7 @@ load_dotenv()
 def get_most_recent_file_datetime():
     connection_string = os.getenv('AZURE_CONNECTION_STRING')
     container_name = os.getenv('AZURE_CONTAINER_NAME')
+    consider_old_after_hrs = int(os.getenv('CONSIDER_OLD_AFTER_HRS', 24))
 
     if not connection_string or not container_name:
         print("Azure connection string or container name is not set.")
