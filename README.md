@@ -13,9 +13,26 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 pip install -r requirements.txt
 
 # set required settings either here or via the `.env` file
+# OR
 # Temporary: Set environment variables for the current session
 export AZURE_CONNECTION_STRING="you-connection-string-here"
 export AZURE_CONTAINER_NAME="your-container-name"
+```
+
+Note: I highly recommend using aider.chat
+
+```bash
+pip install aider-chat --upgrade
+
+# Work with Claude 3.5 Sonnet on your repo
+$ export ANTHROPIC_API_KEY=your-key-goes-here
+$ aider
+
+# OR
+
+# Work with GPT-4o on your repo
+$ export OPENAI_API_KEY=your-key-goes-here
+$ aider 
 ```
 
 ## Docker
@@ -28,6 +45,13 @@ docker build -t azure-blob-latest-file .
 
 # Run the Docker container
 docker run -p 5000:5000 -e AZURE_CONNECTION_STRING="your-connection-string-here" -e AZURE_CONTAINER_NAME="your-container-name" azure-blob-latest-file
+```
+
+Alternatively, you can use Docker Compose:
+
+```bash
+# Build and run the Docker container using Docker Compose
+docker-compose up --build
 ```
 
 ## Upload to Docker Hub
@@ -43,24 +67,4 @@ docker login
 
 # Push the Docker image to Docker Hub
 docker push your-dockerhub-username/azure-blob-latest-file:latest
-```
-
-Alternatively, you can use Docker Compose:
-
-```bash
-# Build and run the Docker container using Docker Compose
-docker-compose up --build
-
-Note: I highly recommend using aider.chat
-
-```bash
-pip install aider-chat --upgrade
-
-# Work with Claude 3.5 Sonnet on your repo
-$ export ANTHROPIC_API_KEY=your-key-goes-here
-$ aider
-
-# Work with GPT-4o on your repo
-$ export OPENAI_API_KEY=your-key-goes-here
-$ aider 
 ```
