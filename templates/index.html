@@ -43,6 +43,7 @@
         .dashboard.warning-bg {
             background-color: #ffcccc;
         }
+
         .dashboard.success-bg {
             background-color: #ccffcc;
         }
@@ -53,8 +54,8 @@
     {% if is_old %}
     <div class="dashboard warning-bg">
         {% else %}
-    <div class="dashboard success-bg">
-        {% endif %}
+        <div class="dashboard success-bg">
+            {% endif %}
             <h1>Azure Blob Latest File Date</h1>
             {% if most_recent_date %}
             <p id="most_recent_date" class="date">
