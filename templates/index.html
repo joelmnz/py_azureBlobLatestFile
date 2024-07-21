@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Blob Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .dashboard {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .date {
+            font-size: 1.5rem;
+            color: #0066cc;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Azure Blob Latest File Date</h1>
+        {% if most_recent_date %}
+            <p class="date">{{ most_recent_date.strftime('%Y-%m-%d %H:%M:%S UTC') }}</p>
+        {% else %}
+            <p class="date">No files found or an error occurred</p>
+        {% endif %}
+    </div>
+</body>
+</html>
