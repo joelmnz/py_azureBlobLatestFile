@@ -28,8 +28,8 @@ def get_most_recent_file_datetime():
             most_recent_blob = max(blobs, key=lambda b: b.last_modified)
             now = datetime.now(timezone.utc)
             if (now - most_recent_blob.last_modified).total_seconds() > consider_old_after_hrs * 3600:
-                return f"{most_recent_blob.last_modified.strftime('%Y-%m-%d %H:%M:%S UTC')} (OLD)"
-            return most_recent_blob.last_modified.strftime('%Y-%m-%d %H:%M:%S UTC')
+                return most_recent_blob.last_modified, True
+            return most_recent_blob.last_modified, False
         return None
     except ResourceNotFoundError:
         print(f"Container '{container_name}' not found.")
@@ -40,8 +40,8 @@ def get_most_recent_file_datetime():
 
 @app.route('/')
 def dashboard():
-    most_recent_date = get_most_recent_file_datetime()
-    return render_template('index.html', most_recent_date=most_recent_date)
+    most_recent_date, is_old = get_most_recent_file_datetime()
+    return render_template('index.html', most_recent_date=most_recent_date, is_old=is_old)
 
 if __name__ == '__main__':
     app.run(debug=True)

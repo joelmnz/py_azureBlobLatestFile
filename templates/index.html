@@ -35,7 +35,10 @@
     <div class="dashboard">
         <h1>Azure Blob Latest File Date</h1>
         {% if most_recent_date %}
-            <p class="date">{{ most_recent_date.strftime('%Y-%m-%d %H:%M:%S UTC') }}</p>
+            <p class="date">
+                {{ most_recent_date.strftime('%Y-%m-%d %H:%M:%S UTC') }}
+                {% if is_old %} (OLD) {% endif %}
+            </p>
         {% else %}
             <p class="date">No files found or an error occurred</p>
         {% endif %}
