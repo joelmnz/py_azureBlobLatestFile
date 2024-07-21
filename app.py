@@ -13,7 +13,9 @@ def get_most_recent_file_datetime():
     connection_string = os.getenv('AZURE_CONNECTION_STRING')
     container_name = os.getenv('AZURE_CONTAINER_NAME')
 
-    try:
+    if not connection_string or not container_name:
+        print("Azure connection string or container name is not set.")
+        return None
         blob_service_client = BlobServiceClient.from_connection_string(connection_string)
         container_client = blob_service_client.get_container_client(container_name)
         
