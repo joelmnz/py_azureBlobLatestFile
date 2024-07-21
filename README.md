@@ -30,6 +30,21 @@ docker build -t azure-blob-latest-file .
 docker run -p 5000:5000 -e AZURE_CONNECTION_STRING="your-connection-string-here" -e AZURE_CONTAINER_NAME="your-container-name" azure-blob-latest-file
 ```
 
+## Upload to Docker Hub
+
+To upload the Docker image to Docker Hub:
+
+```bash
+# Tag the Docker image
+docker tag azure-blob-latest-file your-dockerhub-username/azure-blob-latest-file:latest
+
+# Log in to Docker Hub
+docker login
+
+# Push the Docker image to Docker Hub
+docker push your-dockerhub-username/azure-blob-latest-file:latest
+```
+
 Alternatively, you can use Docker Compose:
 
 ```bash
