@@ -40,7 +40,7 @@
     <div class="dashboard">
         <h1>Azure Blob Latest File Date</h1>
         {% if most_recent_date %}
-            <p class="date">
+            <p id="most_recent_date" class="date">
                 {{ most_recent_date.strftime('%Y-%m-%d %H:%M:%S UTC') }}
             </p>
             {% if is_old %}
