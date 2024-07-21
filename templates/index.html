@@ -29,6 +29,11 @@
             color: #0066cc;
             margin-top: 1rem;
         }
+        .warning {
+            color: red;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -37,7 +42,10 @@
         {% if most_recent_date %}
             <p class="date">
                 {{ most_recent_date.strftime('%Y-%m-%d %H:%M:%S UTC') }}
-                {% if is_old %} (OLD) {% endif %}
+            </p>
+            {% if is_old %}
+                <p id="old-indicator" class="warning">OLD</p>
+            {% endif %}
             </p>
         {% else %}
             <p class="date">No files found or an error occurred</p>
