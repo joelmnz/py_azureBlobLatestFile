@@ -2,7 +2,7 @@
 
 Displays the date time of the most recent file in a Azure Blob Container. The primary purpose of this app is for use with a monitoring tool such as Uptime Kuma to tell if your backups are working.
 
-# Dev Getting Started
+## Dev Getting Started
 
 ```bash
 # create a new virtual environment
@@ -18,7 +18,7 @@ export AZURE_CONNECTION_STRING="you-connection-string-here"
 export AZURE_CONTAINER_NAME="your-container-name"
 ```
 
-# Docker
+## Docker
 
 To build and run the Docker container:
 
@@ -49,6 +49,3 @@ $ aider
 $ export OPENAI_API_KEY=your-key-goes-here
 $ aider 
 ```
-
-# Docker
-
