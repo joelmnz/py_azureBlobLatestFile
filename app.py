@@ -16,6 +16,7 @@ def get_most_recent_file_datetime_backblaze():
     access_key_id = os.getenv('BACKBLAZE_ACCESS_KEY_ID')
     secret_access_key = os.getenv('BACKBLAZE_SECRET_ACCESS_KEY')
     bucket_name = os.getenv('BACKBLAZE_BUCKET_NAME')
+    endpoint_url = os.getenv('BACKBLAZE_S3_ENDPOINT_URL', 'https://s3.us-west-002.backblazeb2.com')
     consider_old_after_hrs = int(os.getenv('CONSIDER_OLD_AFTER_HRS', 24))
 
     if not access_key_id or not secret_access_key or not bucket_name:
@@ -24,7 +25,7 @@ def get_most_recent_file_datetime_backblaze():
     try:
         s3_client = boto3.client(
             's3',
-            endpoint_url='https://s3.us-west-002.backblazeb2.com',
+            endpoint_url=endpoint_url,
             aws_access_key_id=access_key_id,
             aws_secret_access_key=secret_access_key
         )
