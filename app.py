@@ -73,8 +73,18 @@ def get_most_recent_file_datetime_azure():
 
 @app.route('/')
 def dashboard():
-    most_recent_date, is_old = get_most_recent_file_datetime()
-    return render_template('index.html', most_recent_date=most_recent_date, is_old=is_old)
+    storage_type = request.args.get('type', 'az').lower()
+    if storage_type == 'az':
+        most_recent_date, is_old = get_most_recent_file_datetime_azure()
+        provider_name = "Azure Blob Storage"
+    elif storage_type == 'bb':
+        most_recent_date, is_old = get_most_recent_file_datetime_backblaze()
+        provider_name = "Backblaze B2"
+    else:
+        most_recent_date, is_old = None, False
+        provider_name = "Unknown"
+
+    return render_template('index.html', most_recent_date=most_recent_date, is_old=is_old, provider_name=provider_name)
 
 if __name__ == '__main__':
     app.run(debug=True)
