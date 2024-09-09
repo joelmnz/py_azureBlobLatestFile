@@ -9,7 +9,12 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# Define variables
+# Check if the .env file exists
+if [ ! -f .env ]; then
+    echo "Error: .env file not found."
+    echo "Please create a .env file by copying the .env-template.txt file and try again."
+    exit 1
+fi
 APP_NAME="blob_watcher"
 DOCKER_IMAGE_NAME="${APP_NAME}_image"
 DOCKER_CONTAINER_NAME="${APP_NAME}"
