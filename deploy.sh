@@ -26,8 +26,8 @@ if [ "$(docker ps -aq -f name=$DOCKER_CONTAINER_NAME)" ]; then
     docker rm $DOCKER_CONTAINER_NAME
 fi
 
-# Run the Docker container with volume mapping
+# Run the Docker container with volume mapping and environment variables
 echo "Running the Docker container on port $PORT..."
-docker run -d -p $PORT:5000 --restart unless-stopped --name $DOCKER_CONTAINER_NAME $DOCKER_IMAGE_NAME
+docker run -d -p $PORT:5000 --restart unless-stopped --name $DOCKER_CONTAINER_NAME --env-file .env $DOCKER_IMAGE_NAME
 
 echo "App deployed and running at http://localhost:$PORT"
