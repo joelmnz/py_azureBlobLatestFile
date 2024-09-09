@@ -56,7 +56,7 @@
         {% else %}
         <div class="dashboard success-bg">
             {% endif %}
-            <h1>Azure Blob Latest File Date</h1>
+            <h1>{{ provider_name }} Latest File Date</h1>
             {% if most_recent_date %}
             <p id="most_recent_date" class="date">
                 {{ most_recent_date.strftime('%Y-%m-%d %H:%M:%S UTC') }}
